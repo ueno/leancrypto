@@ -26,7 +26,9 @@ extern "C" {
 
 #ifndef LINUX_KERNEL
 
-#ifndef false
+/* C23 defines boolean variables as a reserved keyword */
+#if !defined(false) && \
+  (defined __STDC_VERSION__ ? __STDC_VERSION__ : 0) < 202311L
 /* Boolean variable */
 enum { false, true };
 typedef _Bool bool;
